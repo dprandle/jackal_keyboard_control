@@ -1,0 +1,77 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Launch Target",
+            "type": "shell",
+            "command": "${command:cmake.launchTargetPath}",
+            "group": "none",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "showReuseMessage": true,
+                "clear": true,
+                "focus": true
+            },
+            "options": {
+                "cwd": "${workspaceRoot}/build",
+                "env": {
+                    "ROS_MASTER_URI":"${input:selected_board}"
+                }
+            },
+            "problemMatcher": [],
+            "runOptions": {
+                
+            }
+        },
+        {
+            "label": "Catkin Make",
+            "type": "shell",
+            "command": "catkin_make",
+            "group": "none",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "showReuseMessage": true,
+                "clear": true,
+                "focus": true
+            },
+            "options": {
+                "cwd": "${workspaceRoot}/../.."
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "ROS Launch",
+            "type": "shell",
+            "command": "source devel/setup.sh && roslaunch jackal_keyboard_control keyboard_control.launch",
+            "group": "none",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "showReuseMessage": true,
+                "clear": true,
+                "focus": true
+            },
+            "options": {
+                "cwd": "${workspaceRoot}/../..",
+                "env": {
+                    "ROS_MASTER_URI":"${input:selected_board}"
+                }
+            },
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "type": "pickString",
+            "description": "Which MASTER?",
+            "id": "selected_board",
+            "options": [
+                "http://localhost:11311",
+                "http://cpr-uaf01:11311"
+            ],
+            "default": "http://localhost:11311"
+        }
+    ]
+}

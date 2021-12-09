@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="jackal_keyboard_control" type="jackal_keyboard_control_node" name="jackal_keyboard_control_node" output="screen">
+    </node>
+</launch>
